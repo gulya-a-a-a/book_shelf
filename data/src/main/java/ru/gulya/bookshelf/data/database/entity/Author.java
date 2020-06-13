@@ -7,6 +7,15 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "authors")
 public class Author {
 
+    public Author() {
+    }
+
+    public Author(long id, String firstName, String surname) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private long id;
 

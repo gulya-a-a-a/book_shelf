@@ -1,0 +1,67 @@
+package ru.gulya.bookshelf.data;
+
+import android.util.Log;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Predicate;
+import ru.gulya.bookshelf.data.database.BookShelfDatabase;
+import ru.gulya.bookshelf.data.database.entity.Author;
+
+@RunWith(AndroidJUnit4.class)
+public class BooksDaoTest {
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
+    private BookShelfDatabase mDatabase;
+
+    final Author AUTHOR = new Author(1, "Leo", "Tolstoy");
+
+    @Before
+    public void initDb() {
+        mDatabase = Room.inMemoryDatabaseBuilder(
+                ApplicationProvider.getApplicationContext(),
+                BookShelfDatabase.class)
+                .allowMainThreadQueries()
+                .build();
+    }
+
+    @After
+    public void closeDb() {
+        mDatabase.close();
+    }
+
+
+    @Test
+    public void insertAndGetBook() {
+        Long result = mDatabase.getAuthorDao().insert(AUTHOR).blockingGet();
+
+        Disposable d = mDatabase.getAuthorDao().getAuthorById(AUTHOR.getId())
+                .test()
+                .assertValue((Predicate<Author>) author -> author != null && (author.getId() == AUTHOR.getId()) &&
+                        author.getFirstName().equals(AUTHOR.getFirstName()) &&
+                        author.getSurname().equals(AUTHOR.getSurname()));
+    }
+
+    @Test
+    public void deleteAndGetUser() {
+        Long result = mDatabase.getAuthorDao().insert(AUTHOR).blockingGet();
+
+        mDatabase.getAuthorDao().deleteAllAuthors();
+
+        mDatabase.getAuthorDao().getAll()
+                .test()
+                .assertNoValues();
+    }
+}

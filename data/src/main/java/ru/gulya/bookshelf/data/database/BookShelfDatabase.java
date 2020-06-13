@@ -12,5 +12,9 @@ import ru.gulya.bookshelf.data.database.entity.Shelf;
 @Database(entities = {Book.class, Bookcase.class, Shelf.class, Placement.class, Author.class},
         version = 1, exportSchema = false)
 public abstract class BookShelfDatabase extends RoomDatabase {
-    public abstract BookShelfDao getDao();
+    public abstract BooksDao getBooksDao();
+
+    public abstract ShelvesDao getShelvesDao();
+
+    public abstract AuthorDao getAuthorDao();
 }
