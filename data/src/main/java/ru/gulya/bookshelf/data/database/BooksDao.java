@@ -10,7 +10,6 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 import io.reactivex.Single;
 import ru.gulya.bookshelf.data.database.entity.Book;
 
@@ -18,7 +17,7 @@ import ru.gulya.bookshelf.data.database.entity.Book;
 public interface BooksDao {
 
     @Insert
-    Completable insert(Book book);
+    Single<Long> insert(Book book);
 
     @Update
     Completable update(Book book);

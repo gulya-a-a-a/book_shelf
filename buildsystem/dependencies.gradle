@@ -1,17 +1,24 @@
 ext {
     androidCompileSdkVersion = 29
-    androidBuildToolsVersion = '29.0.3'
+    androidBuildToolsVersion = '30.0.0'
     androidMinSDKVersion = '21'
     androidTargetSDKVersion = '29'
 
     room_version = '2.2.5'
     appcompat_version = '1.1.0'
     espresso_version = '3.2.0'
-    junit_version = '4.12'
+    junit_version = "4.12"
+
+    rxjava_version = '2.2.5'
+    daggerVersion = "2.27"
 
     dataDependencies = ['roomCompiler': "androidx.room:room-compiler:$room_version",
                         'roomRuntime' : "androidx.room:room-runtime:$room_version",
-                        'roomRxjava'  : "androidx.room:room-rxjava2:$room_version"]
+                        'roomRxjava'  : "androidx.room:room-rxjava2:$room_version",
+                        'dagger'      : "com.google.dagger:dagger:${daggerVersion}"]
+
+    domainDependencies = ['rxjava': "io.reactivex.rxjava2:rxjava:$rxjava_version",
+                          'dagger': "com.google.dagger:dagger:${daggerVersion}"]
 
 
     testDependencies = [espresso: "androidx.test.espresso:espresso-core:$espresso_version",

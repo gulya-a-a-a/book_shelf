@@ -10,14 +10,13 @@ import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
-import io.reactivex.Maybe;
 import io.reactivex.Single;
 import ru.gulya.bookshelf.data.database.entity.Shelf;
 
 @Dao
 public interface ShelvesDao {
     @Insert
-    Maybe<Long> insert(Shelf shelf);
+    Single<Long> insert(Shelf shelf);
 
     @Update
     Completable update(Shelf shelf);

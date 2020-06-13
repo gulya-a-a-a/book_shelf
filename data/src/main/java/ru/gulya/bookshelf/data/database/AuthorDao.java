@@ -28,7 +28,7 @@ public interface AuthorDao {
     Single<Integer> deleteListOfUAuthors(List<Author> authors);
 
     @Query("DELETE FROM authors")
-    void deleteAllAuthors();
+    Single<Integer> deleteAllAuthors();
 
     @Query("SELECT * FROM authors")
     Flowable<Author> getAll();

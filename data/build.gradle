@@ -1,4 +1,17 @@
-apply plugin: 'com.android.application'
+repositories {
+    google()
+}
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.7.1'
+    }
+}
+
+apply plugin: 'com.android.library'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -33,15 +46,21 @@ dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
     def testDependencies = rootProject.ext.testDependencies
 
+    implementation domainDependencies.rxjava
+
+    implementation project(':domain')
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation dataDependencies.roomRuntime
     implementation dataDependencies.roomRxjava
     annotationProcessor dataDependencies.roomCompiler
 
+    implementation dataDependencies.dagger
+
     testImplementation testDependencies.junit
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation testDependencies.espresso
 
 }
