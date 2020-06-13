@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.data.entity;
+package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

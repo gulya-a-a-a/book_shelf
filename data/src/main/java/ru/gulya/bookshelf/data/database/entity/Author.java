@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.data.entity;
+package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

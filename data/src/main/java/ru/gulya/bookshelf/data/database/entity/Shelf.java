@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.data.entity;
+package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -6,8 +6,10 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "shelves",
-        foreignKeys = @ForeignKey(entity = Bookcase.class, parentColumns = "id", childColumns = "bookcase_id"),
+        foreignKeys = @ForeignKey(entity = Bookcase.class, parentColumns = "id", childColumns = "bookcase_id", onDelete = CASCADE),
         indices = @Index("bookcase_id")
 )
 public class Shelf {

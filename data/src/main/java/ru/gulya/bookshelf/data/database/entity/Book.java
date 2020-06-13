@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.data.entity;
+package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
