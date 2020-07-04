@@ -28,6 +28,12 @@ public class Author {
         this.surname = surname;
     }
 
+    public Author(String firstName, String surname) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public Author(long id) {
         this.id = id;
     }

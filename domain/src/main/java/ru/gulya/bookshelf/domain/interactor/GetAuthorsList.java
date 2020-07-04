@@ -9,7 +9,7 @@ import ru.gulya.bookshelf.domain.models.Author;
 import ru.gulya.bookshelf.domain.BookShelfRepository;
 import ru.gulya.bookshelf.domain.executors.PostExecutionThread;
 
-public class GetAuthorsList extends UseCase<List<Author>, Void> {
+public class GetAuthorsList extends UseCaseObservable<List<Author>, Void> {
 
     private final BookShelfRepository<Author> mBookShelfRepository;
 
