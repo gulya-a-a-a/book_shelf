@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.app.presenters;
+package ru.gulya.bookshelf.app.presenters.authors;
 
 import android.util.Log;
 

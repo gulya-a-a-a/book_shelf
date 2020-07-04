@@ -8,30 +8,9 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/text_id"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get All" />
-
-    <Button
-        android:id="@+id/button_get_by_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insert" />
-
-    <Button
-        android:id="@+id/button_insert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insert" />
-
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

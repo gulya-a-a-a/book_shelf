@@ -7,9 +7,9 @@ import android.widget.EditText;
 
 import javax.inject.Inject;
 
-import ru.gulya.bookshelf.app.presenters.AuthorEditPresenter;
-import ru.gulya.bookshelf.app.presenters.AuthorListPresenter;
-import ru.gulya.bookshelf.app.presenters.AuthorPresenter;
+import ru.gulya.bookshelf.app.presenters.authors.AuthorEditPresenter;
+import ru.gulya.bookshelf.app.presenters.authors.AuthorListPresenter;
+import ru.gulya.bookshelf.app.presenters.authors.AuthorPresenter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     @Inject
     AuthorEditPresenter mAuthorEditPresenter;
 
+    EditText editText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
         BookShelfApplication.getAppComponent().inject(this);
 
+        mAuthorListPresenter.setMainActivity(this);
+
         initControls();
     }
 
     private void initControls() {
-        final EditText editText = findViewById(R.id.text_id);
+        editText = findViewById(R.id.text_id);
         findViewById(R.id.button).setOnClickListener(v -> {
             mAuthorListPresenter.getAuthors();
         });
@@ -47,5 +51,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_insert).setOnClickListener(v -> {
             mAuthorEditPresenter.insertAuthor();
         });
+    }
+
+    public void showNumberOfAuthors(long val) {
+        editText.setText(String.format("%d", val));
     }
 }

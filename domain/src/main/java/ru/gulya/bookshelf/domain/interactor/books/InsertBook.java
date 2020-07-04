@@ -8,6 +8,7 @@ import ru.gulya.bookshelf.domain.interactor.base.AddUseCase;
 import ru.gulya.bookshelf.domain.models.Book;
 
 public class InsertBook extends AddUseCase<Book> {
+
     @Inject
     InsertBook(BookShelfRepository<Book> bookBookShelfRepository,
                PostExecutionThread postExecutionThread) {
