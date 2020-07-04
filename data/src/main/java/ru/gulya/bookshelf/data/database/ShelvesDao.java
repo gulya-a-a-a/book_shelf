@@ -11,22 +11,22 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import ru.gulya.bookshelf.data.database.entity.Shelf;
+import ru.gulya.bookshelf.data.database.entity.ShelfEntity;
 
 @Dao
 public interface ShelvesDao {
     @Insert
-    Single<Long> insert(Shelf shelf);
+    Single<Long> insert(ShelfEntity shelf);
 
     @Update
-    Completable update(Shelf shelf);
+    Completable update(ShelfEntity shelf);
 
     @Delete
-    Single<Integer> deleteAll(Shelf[] shelves);
+    Single<Integer> deleteAll(ShelfEntity[] shelves);
 
     @Query("SELECT * FROM shelves")
-    Flowable<List<Shelf>> getAllShelves();
+    Flowable<List<ShelfEntity>> getAllShelves();
 
     @Query("SELECT * FROM shelves WHERE id=:shelfId")
-    Flowable<Shelf> getShelfById(long shelfId);
+    Flowable<ShelfEntity> getShelfById(long shelfId);
 }

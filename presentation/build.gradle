@@ -1,17 +1,4 @@
-repositories {
-    google()
-}
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.7.1'
-    }
-}
-
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -20,6 +7,7 @@ android {
     buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
 
     defaultConfig {
+        applicationId "ru.gulya.bookshelf"
         minSdkVersion globalConfiguration["androidMinSDKVersion"]
         targetSdkVersion globalConfiguration["androidTargetSDKVersion"]
         versionCode 1
@@ -41,25 +29,26 @@ android {
     }
 }
 
-
 dependencies {
-    def dataDependencies = rootProject.ext.dataDependencies
-    def testDependencies = rootProject.ext.testDependencies
-
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':data')
     implementation project(':domain')
 
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def testDependencies = rootProject.ext.testDependencies
 
-    implementation dataDependencies.roomRuntime
-    implementation dataDependencies.roomRxjava
-    annotationProcessor dataDependencies.roomCompiler
+    implementation presentationDependencies.appcompat
+    implementation presentationDependencies.constraintlayout
 
-    implementation dataDependencies.dagger
-    annotationProcessor domainDependencies.daggerCompiler
+    implementation presentationDependencies.roomRuntime
+    annotationProcessor presentationDependencies.roomCompiler
+
+    implementation presentationDependencies.rxjava
+    implementation presentationDependencies.rxandroid
+    implementation presentationDependencies.dagger
+    implementation presentationDependencies.daggerAndroid
+    annotationProcessor presentationDependencies.daggerCompiler
 
     testImplementation testDependencies.junit
-    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation testDependencies.espresso
-
 }

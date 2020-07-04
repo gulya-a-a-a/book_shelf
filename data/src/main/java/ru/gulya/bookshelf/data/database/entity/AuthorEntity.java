@@ -2,15 +2,17 @@ package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "authors")
-public class Author {
+public class AuthorEntity {
 
-    public Author() {
+    @Ignore
+    public AuthorEntity() {
     }
 
-    public Author(long id, String firstName, String surname) {
+    public AuthorEntity(long id, String firstName, String surname) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;

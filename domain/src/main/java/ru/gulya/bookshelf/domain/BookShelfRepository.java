@@ -1,18 +1,21 @@
 package ru.gulya.bookshelf.domain;
 
 
+import java.util.List;
+
 import io.reactivex.Completable;
-import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public interface BookShelfRepository<T> {
+
     Single<Long> insert(T item);
 
     Completable update(T item);
 
-    Flowable<T> getAll();
+    Observable<List<T>> getAll();
 
-    Flowable<T> getById(long id);
+    Observable<T> getById(long id);
 
     Single<Integer> deleteAll();
 }

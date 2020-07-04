@@ -10,9 +10,9 @@ import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "books",
         foreignKeys = {
-                @ForeignKey(entity = Author.class, parentColumns = "id",
+                @ForeignKey(entity = AuthorEntity.class, parentColumns = "id",
                         childColumns = "author_id", onDelete = CASCADE),
-                @ForeignKey(entity = Shelf.class, parentColumns = "id",
+                @ForeignKey(entity = ShelfEntity.class, parentColumns = "id",
                         childColumns = "shelf_id", onDelete = CASCADE)
         },
         indices = {
@@ -20,7 +20,7 @@ import static androidx.room.ForeignKey.CASCADE;
                 @Index("shelf_id")
         }
 )
-public class Book {
+public class BookEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
 

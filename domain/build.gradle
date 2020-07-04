@@ -1,9 +1,9 @@
 apply plugin: 'java'
 
 //noinspection GroovyUnusedAssignment
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 //noinspection GroovyUnusedAssignment
-targetCompatibility = 1.7
+targetCompatibility = 1.8
 
 configurations {
     provided
@@ -20,7 +20,9 @@ dependencies {
     def testDependencies = rootProject.ext.testDependencies
 
     implementation domainDependencies.rxjava
+
     implementation domainDependencies.dagger
 
     testImplementation testDependencies.junit
+    testImplementation testDependencies.mockito
 }

@@ -9,30 +9,30 @@ import androidx.room.Update;
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
-import ru.gulya.bookshelf.data.database.entity.Author;
+import ru.gulya.bookshelf.data.database.entity.AuthorEntity;
 
 @Dao
 public interface AuthorDao {
     @Insert
-    Single<Long> insert(Author author);
+    Single<Long> insert(AuthorEntity author);
 
     @Update
-    Completable update(Author author);
+    Completable update(AuthorEntity author);
 
     @Delete
-    Single<Integer> delete(Author author);
+    Single<Integer> delete(AuthorEntity author);
 
     @Delete
-    Single<Integer> deleteListOfUAuthors(List<Author> authors);
+    Single<Integer> deleteListOfUAuthors(List<AuthorEntity> authors);
 
     @Query("DELETE FROM authors")
     Single<Integer> deleteAllAuthors();
 
     @Query("SELECT * FROM authors")
-    Flowable<Author> getAll();
+    Observable<List<AuthorEntity>> getAll();
 
     @Query("SELECT * FROM authors WHERE id=:authorId")
-    Flowable<Author> getAuthorById(long authorId);
+    Observable<AuthorEntity> getAuthorById(long authorId);
 }

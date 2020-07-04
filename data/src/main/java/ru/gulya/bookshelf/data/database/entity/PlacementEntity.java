@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "placement")
-public class Placement {
+public class PlacementEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
 

@@ -8,19 +8,19 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "bookcases",
-        foreignKeys = @ForeignKey(entity = Placement.class, parentColumns = "id",
-                childColumns = "room_id", onDelete = CASCADE),
-        indices = @Index("room_id")
+@Entity(tableName = "shelves",
+        foreignKeys = @ForeignKey(entity = BookcaseEntity.class, parentColumns = "id",
+                childColumns = "bookcase_id", onDelete = CASCADE),
+        indices = @Index("bookcase_id")
 )
-public class Bookcase {
+public class ShelfEntity {
     @PrimaryKey(autoGenerate = true)
     private long id;
 
     private String title;
 
-    @ColumnInfo(name = "room_id")
-    private long roomId;
+    @ColumnInfo(name = "bookcase_id")
+    private long bookcaseId;
 
     public long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Bookcase {
         this.title = title;
     }
 
-    public long getRoomId() {
-        return roomId;
+    public long getBookcaseId() {
+        return bookcaseId;
     }
 
-    public void setRoomId(long roomId) {
-        this.roomId = roomId;
+    public void setBookcaseId(long bookcaseId) {
+        this.bookcaseId = bookcaseId;
     }
 }

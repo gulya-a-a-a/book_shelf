@@ -1,7 +1,5 @@
 package ru.gulya.bookshelf.data;
 
-import android.util.Log;
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
@@ -14,17 +12,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Predicate;
 import ru.gulya.bookshelf.data.database.BookShelfDatabase;
-import ru.gulya.bookshelf.data.database.entity.Author;
+import ru.gulya.bookshelf.data.database.entity.AuthorEntity;
+import ru.gulya.bookshelf.data.repository.AuthorsRepository;
+import ru.gulya.bookshelf.domain.models.Author;
 
 @RunWith(AndroidJUnit4.class)
-public class BooksDaoTest {
+public class AuthorDaoTest {
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     private BookShelfDatabase mDatabase;
+
+    private AuthorsRepository mAuthorsRepository;
 
     final Author AUTHOR = new Author(1, "Leo", "Tolstoy");
 
@@ -35,6 +36,8 @@ public class BooksDaoTest {
                 BookShelfDatabase.class)
                 .allowMainThreadQueries()
                 .build();
+
+        mAuthorsRepository = new AuthorsRepository(mDatabase.getAuthorDao());
     }
 
     @After
@@ -44,18 +47,29 @@ public class BooksDaoTest {
 
 
     @Test
-    public void insertAndGetBook() {
+    public void insertAndGetAuthor() {
         Long result = mDatabase.getAuthorDao().insert(AUTHOR).blockingGet();
 
         Disposable d = mDatabase.getAuthorDao().getAuthorById(AUTHOR.getId())
                 .test()
-                .assertValue((Predicate<Author>) author -> author != null && (author.getId() == AUTHOR.getId()) &&
+                .assertValue(author -> author != null && (author.getId() == AUTHOR.getId()) &&
                         author.getFirstName().equals(AUTHOR.getFirstName()) &&
                         author.getSurname().equals(AUTHOR.getSurname()));
     }
 
     @Test
-    public void deleteAndGetUser() {
+    public void insertToRepo() {
+        Long res = mAuthorsRepository.insert(AUTHOR).blockingGet();
+
+        Disposable d = mAuthorsRepository.getById(AUTHOR.getId())
+                .test()
+                .assertValue(author -> author != null && (author.getId() == AUTHOR.getId()) &&
+                        author.getFirstName().equals(AUTHOR.getFirstName()) &&
+                        author.getSurname().equals(AUTHOR.getSurname()));
+    }
+
+    @Test
+    public void deleteAndGetAuthor() {
         Long result = mDatabase.getAuthorDao().insert(AUTHOR).blockingGet();
 
         mDatabase.getAuthorDao().deleteAllAuthors();

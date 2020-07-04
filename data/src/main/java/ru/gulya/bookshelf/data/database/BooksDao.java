@@ -11,26 +11,26 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import ru.gulya.bookshelf.data.database.entity.Book;
+import ru.gulya.bookshelf.data.database.entity.BookEntity;
 
 @Dao
 public interface BooksDao {
 
     @Insert
-    Single<Long> insert(Book book);
+    Single<Long> insert(BookEntity book);
 
     @Update
-    Completable update(Book book);
+    Completable update(BookEntity book);
 
     @Delete
-    Single<Integer> deleteAll(Book[] books);
+    Single<Integer> deleteAll(BookEntity[] books);
 
     @Query("SELECT * FROM books")
-    Flowable<List<Book>> getAllBooks();
+    Flowable<List<BookEntity>> getAllBooks();
 
     @Query("SELECT * FROM books WHERE id=:bookId")
-    Flowable<Book> getBookById(long bookId);
+    Flowable<BookEntity> getBookById(long bookId);
 
     @Query("SELECT * FROM books WHERE shelf_id=:shelfId")
-    Flowable<List<Book>> getAllBookByShelfId(long shelfId);
+    Flowable<List<BookEntity>> getAllBookByShelfId(long shelfId);
 }
