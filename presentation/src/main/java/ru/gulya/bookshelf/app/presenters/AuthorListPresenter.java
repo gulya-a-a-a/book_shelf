@@ -8,7 +8,7 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
-import ru.gulya.bookshelf.domain.interactor.GetAuthorsList;
+import ru.gulya.bookshelf.domain.interactor.authors.GetAuthorsList;
 import ru.gulya.bookshelf.domain.models.Author;
 
 public class AuthorListPresenter {

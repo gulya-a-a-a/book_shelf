@@ -6,6 +6,22 @@ public class Author {
     private String firstName;
     private String surname;
 
+    public Author(long id) {
+        this.id = id;
+    }
+
+    public Author(String firstName, String surname) {
+        this.id = 0;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
+    public Author(long id, String firstName, String surname) {
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -22,21 +38,6 @@ public class Author {
         this.surname = surname;
     }
 
-    public Author(long id, String firstName, String surname) {
-        this.id = id;
-        this.firstName = firstName;
-        this.surname = surname;
-    }
-
-    public Author(String firstName, String surname) {
-        this.id = 0;
-        this.firstName = firstName;
-        this.surname = surname;
-    }
-
-    public Author(long id) {
-        this.id = id;
-    }
 
     public long getId() {
         return id;

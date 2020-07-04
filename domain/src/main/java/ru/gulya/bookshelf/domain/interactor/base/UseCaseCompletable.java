@@ -1,19 +1,20 @@
-package ru.gulya.bookshelf.domain.interactor;
+package ru.gulya.bookshelf.domain.interactor.base;
 
 import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 import ru.gulya.bookshelf.domain.executors.PostExecutionThread;
 
 public abstract class UseCaseCompletable<T, Params> extends UseCase<T, Params, Completable> {
 
-    UseCaseCompletable(PostExecutionThread postExecutionThread) {
+    public UseCaseCompletable(PostExecutionThread postExecutionThread) {
         super(postExecutionThread);
     }
 
-    public void execute(Params params) {
+    public void execute(CompletableObserver observer, Params params) {
         final Completable completable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(mPostExecutionThread.getScheduler());
-        addDisposable(completable.subscribe());
+        completable.subscribe(observer);
     }
 }

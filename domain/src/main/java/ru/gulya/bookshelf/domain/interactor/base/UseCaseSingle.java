@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.domain.interactor;
+package ru.gulya.bookshelf.domain.interactor.base;
 
 import dagger.internal.Preconditions;
 import io.reactivex.Single;
@@ -8,7 +8,7 @@ import ru.gulya.bookshelf.domain.executors.PostExecutionThread;
 
 public abstract class UseCaseSingle<T, Params> extends UseCase<T, Params, Single<T>> {
 
-    UseCaseSingle(PostExecutionThread postExecutionThread) {
+    public UseCaseSingle(PostExecutionThread postExecutionThread) {
         super(postExecutionThread);
     }
 

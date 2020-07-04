@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
-import ru.gulya.bookshelf.domain.interactor.InsertAuthor;
+import ru.gulya.bookshelf.domain.interactor.authors.InsertAuthor;
 import ru.gulya.bookshelf.domain.models.Author;
 
 public class AuthorEditPresenter {

@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.domain.interactor;
+package ru.gulya.bookshelf.domain.interactor.base;
 
 import dagger.internal.Preconditions;
 import io.reactivex.disposables.CompositeDisposable;
@@ -15,7 +15,7 @@ public abstract class UseCase<T, Params, RxType> {
         mDisposables = new CompositeDisposable();
     }
 
-    abstract RxType buildUseCaseObservable(Params params);
+    public abstract RxType buildUseCaseObservable(Params params);
 
     public void dispose() {
         if (!mDisposables.isDisposed()) {

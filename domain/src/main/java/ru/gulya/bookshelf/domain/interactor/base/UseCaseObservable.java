@@ -1,4 +1,4 @@
-package ru.gulya.bookshelf.domain.interactor;
+package ru.gulya.bookshelf.domain.interactor.base;
 
 import dagger.internal.Preconditions;
 import io.reactivex.Observable;

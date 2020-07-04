@@ -2,13 +2,12 @@ package ru.gulya.bookshelf.app.presenters;
 
 import android.util.Log;
 
-import java.util.List;
 import java.util.Objects;
 
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
-import ru.gulya.bookshelf.domain.interactor.GetAuthorById;
+import ru.gulya.bookshelf.domain.interactor.authors.GetAuthorById;
 import ru.gulya.bookshelf.domain.models.Author;
 
 public class AuthorPresenter {
