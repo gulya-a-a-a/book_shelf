@@ -1,5 +1,6 @@
 package ru.gulya.bookshelf.data.database.mapper;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import ru.gulya.bookshelf.data.database.entity.BookEntity;
@@ -7,6 +8,11 @@ import ru.gulya.bookshelf.domain.models.Book;
 
 @Singleton
 public class BooksEntityMapper extends EntityMapper<Book, BookEntity> {
+
+    @Inject
+    BooksEntityMapper() {
+    }
+
     @Override
     Book createItem(BookEntity entity) {
         Book book = new Book(entity.getId());
