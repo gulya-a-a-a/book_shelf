@@ -46,7 +46,7 @@ public class BookDetailsFragment extends Fragment implements DetailView<Book> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mBookPresenter.setView(this);
-        mBookPresenter.getItem(1);
+        mBookPresenter.getItem(getArguments().getLong("BOOK_ID"));
     }
 
     private void initControls(View fragmentView) {

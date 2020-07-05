@@ -1,5 +1,6 @@
 package ru.gulya.bookshelf.presentation.views.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,14 @@ public class BookListFragment extends Fragment implements ListView<Book> {
     private ProgressBar mProgressBar;
     private Button mRetryButton;
 
+    private BookListOnClickListener mBookListOnClickListener;
+
+    private BookListAdapter.OnBookClickListener mOnBookClickListener = book -> {
+        if (mBookListOnClickListener != null) {
+            mBookListOnClickListener.onClicked(book);
+        }
+    };
+
     @Inject
     BookListAdapter mBookListAdapter;
 
@@ -61,6 +70,10 @@ public class BookListFragment extends Fragment implements ListView<Book> {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mBooksListPresenter.setView(this);
+        Activity activity = getActivity();
+        if (activity instanceof BookListActivity) {
+            mBookListOnClickListener = (BookListOnClickListener) activity;
+        }
     }
 
     @Override
@@ -77,6 +90,7 @@ public class BookListFragment extends Fragment implements ListView<Book> {
             mBooksListPresenter.getItemsList();
         });
 
+        mBookListAdapter.setOnBookClickListener(mOnBookClickListener);
         mRecyclerViewBooks = v.findViewById(R.id.rv);
         mRecyclerViewBooks.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerViewBooks.setAdapter(mBookListAdapter);
@@ -107,5 +121,9 @@ public class BookListFragment extends Fragment implements ListView<Book> {
     @Override
     public void showError(String message) {
 
+    }
+
+    public interface BookListOnClickListener {
+        void onClicked(Book book);
     }
 }

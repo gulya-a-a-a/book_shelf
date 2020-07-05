@@ -12,6 +12,7 @@ import ru.gulya.bookshelf.presentation.views.fragments.BookDetailsFragment;
 public class BookDetailsActivity extends BaseActivity {
 
     private BookComponent mBookComponent;
+    private long mBookId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,7 +21,12 @@ public class BookDetailsActivity extends BaseActivity {
 
         initInjection();
         if (savedInstanceState == null) {
-            addFragment(R.id.fragment_container, new BookDetailsFragment());
+            mBookId = getIntent().getLongExtra("BOOK_ID", -1);
+            final BookDetailsFragment bookDetailsFragment = new BookDetailsFragment();
+            final Bundle args = new Bundle();
+            args.putLong("BOOK_ID", mBookId);
+            bookDetailsFragment.setArguments(args);
+            addFragment(R.id.fragment_container, bookDetailsFragment);
         }
     }
 

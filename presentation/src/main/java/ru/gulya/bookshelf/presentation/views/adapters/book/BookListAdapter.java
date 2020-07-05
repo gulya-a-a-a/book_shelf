@@ -17,6 +17,12 @@ import ru.gulya.bookshelf.domain.models.Book;
 
 public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
 
+    public interface OnBookClickListener {
+        void onBookClicked(Book book);
+    }
+
+    private OnBookClickListener mOnBookClickListener;
+
     List<Book> mBookList;
 
     @Inject
@@ -46,7 +52,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         notifyDataSetChanged();
     }
 
-    static class BookViewHolder extends RecyclerView.ViewHolder {
+    public void setOnBookClickListener(OnBookClickListener onBookClickListener) {
+        mOnBookClickListener = onBookClickListener;
+    }
+
+    class BookViewHolder extends RecyclerView.ViewHolder {
         TextView mBookTitle, mAuthorName;
 
         public BookViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -62,7 +72,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
         private void bindData(Book book) {
             mBookTitle.setText(book.getTitle());
             itemView.setOnClickListener(v -> {
-
+                if (mOnBookClickListener != null) {
+                    mOnBookClickListener.onBookClicked(book);
+                }
             });
         }
     }

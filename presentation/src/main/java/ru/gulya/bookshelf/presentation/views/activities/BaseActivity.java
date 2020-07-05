@@ -6,10 +6,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import javax.inject.Inject;
+
 import ru.gulya.bookshelf.presentation.BookShelfApplication;
 import ru.gulya.bookshelf.presentation.di.components.AppComponent;
+import ru.gulya.bookshelf.presentation.navigator.Navigator;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
+
+    @Inject
+    Navigator mNavigator;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

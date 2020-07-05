@@ -4,12 +4,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import ru.gulya.bookshelf.domain.models.Book;
 import ru.gulya.bookshelf.presentation.R;
 import ru.gulya.bookshelf.presentation.di.components.BookComponent;
 import ru.gulya.bookshelf.presentation.di.components.DaggerBookComponent;
 import ru.gulya.bookshelf.presentation.views.fragments.BookListFragment;
 
-public class BookListActivity extends BaseActivity {
+public class BookListActivity extends BaseActivity implements BookListFragment.BookListOnClickListener {
 
     private BookComponent mBookComponent;
 
@@ -33,5 +34,10 @@ public class BookListActivity extends BaseActivity {
 
     public BookComponent getBookComponent() {
         return mBookComponent;
+    }
+
+    @Override
+    public void onClicked(Book book) {
+        mNavigator.goToSpecificBook(this, book.getId());
     }
 }

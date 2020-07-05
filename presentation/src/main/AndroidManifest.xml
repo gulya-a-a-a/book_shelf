@@ -13,19 +13,19 @@
         <activity android:name="ru.gulya.bookshelf.presentation.views.activities.MainActivity"></activity>
 
         <activity android:name="ru.gulya.bookshelf.presentation.views.activities.BookListActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity android:name="ru.gulya.bookshelf.presentation.views.activities.BookDetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name="ru.gulya.bookshelf.presentation.views.activities.BookDetailsActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 
