@@ -4,14 +4,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
+import ru.gulya.bookshelf.domain.models.Book;
 import ru.gulya.bookshelf.presentation.R;
-import ru.gulya.bookshelf.presentation.di.components.BookComponent;
-import ru.gulya.bookshelf.presentation.di.components.DaggerBookComponent;
-import ru.gulya.bookshelf.presentation.views.fragments.BookDetailsFragment;
+import ru.gulya.bookshelf.presentation.views.ListFragmentOnClickListener;
+import ru.gulya.bookshelf.presentation.views.fragments.book.BookDetailsFragment;
 
-public class BookDetailsActivity extends BaseActivity {
+public class BookDetailsActivity extends BookActivity implements ListFragmentOnClickListener<Book> {
 
-    private BookComponent mBookComponent;
     private long mBookId;
 
     @Override
@@ -19,7 +18,7 @@ public class BookDetailsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initInjection();
+        initComponent();
         if (savedInstanceState == null) {
             mBookId = getIntent().getLongExtra("BOOK_ID", -1);
             final BookDetailsFragment bookDetailsFragment = new BookDetailsFragment();
@@ -30,14 +29,13 @@ public class BookDetailsActivity extends BaseActivity {
         }
     }
 
-    private void initInjection() {
-        mBookComponent = DaggerBookComponent
-                .builder()
-                .appComponent(getAppComponent())
-                .build();
+    @Override
+    public void onItemSelectClicked(Book book) {
+        mNavigator.goToEditSpecificBook(this, book);
     }
 
-    public BookComponent getBookComponent() {
-        return mBookComponent;
+    @Override
+    public void onAddItemClicked() {
+
     }
 }

@@ -10,29 +10,31 @@ import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "books",
         foreignKeys = {
-                @ForeignKey(entity = AuthorEntity.class, parentColumns = "id",
-                        childColumns = "author_id", onDelete = CASCADE),
-                @ForeignKey(entity = ShelfEntity.class, parentColumns = "id",
-                        childColumns = "shelf_id", onDelete = CASCADE)
+                @ForeignKey(entity = AuthorEntity.class, parentColumns = "author_id",
+                        childColumns = "authorId", onDelete = CASCADE),
+                @ForeignKey(entity = ShelfEntity.class, parentColumns = "shelf_id",
+                        childColumns = "shelfId", onDelete = CASCADE)
         },
         indices = {
-                @Index("author_id"),
-                @Index("shelf_id")
+                @Index("authorId"),
+                @Index("shelfId")
         }
 )
 public class BookEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "book_id")
     private long id;
 
+    @ColumnInfo(name = "book_title")
     private String title;
 
-    @ColumnInfo(name = "author_id")
+    @ColumnInfo(name = "authorId")
     private long authorId;
 
     private int year;
     private String description;
 
-    @ColumnInfo(name = "shelf_id")
+    @ColumnInfo(name = "shelfId")
     private long shelfId;
 
     private long order;

@@ -17,7 +17,7 @@ public abstract class EntityMapper<ItemType, EntityType> {
     }
 
     public List<ItemType> transform(Collection<EntityType> entities) {
-        final List<ItemType> itemsList = new ArrayList<>(50);
+        final List<ItemType> itemsList = new ArrayList<>(INITIAL_LIST_CAPACITY);
         for (EntityType entity : entities) {
             final ItemType item = transform(entity);
             if (item != null) {

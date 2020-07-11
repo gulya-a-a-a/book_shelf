@@ -8,9 +8,9 @@ import java.util.Objects;
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
+import ru.gulya.bookshelf.domain.models.Book;
 import ru.gulya.bookshelf.presentation.presenters.BaseListPresenter;
 import ru.gulya.bookshelf.domain.interactor.books.GetBooksList;
-import ru.gulya.bookshelf.domain.models.Book;
 
 public class BooksListPresenter extends BaseListPresenter<Book> {
 
@@ -21,15 +21,16 @@ public class BooksListPresenter extends BaseListPresenter<Book> {
 
     @Override
     public void getItemsList() {
-        view.showLoading();
+        mView.showLoading();
         mGetListUseCase.execute(new BooksListObserver(), null);
     }
 
     private final class BooksListObserver extends DisposableObserver<List<Book>> {
         @Override
         public void onNext(List<Book> books) {
-            view.hideLoading();
-            view.showItemList(books);
+            mView.hideLoading();
+            setModel(books);
+            mView.showItemList(books);
         }
 
         @Override
@@ -39,7 +40,7 @@ public class BooksListPresenter extends BaseListPresenter<Book> {
 
         @Override
         public void onComplete() {
-            view.hideLoading();
+            mView.hideLoading();
             Log.d("TAG", "Complete");
         }
     }

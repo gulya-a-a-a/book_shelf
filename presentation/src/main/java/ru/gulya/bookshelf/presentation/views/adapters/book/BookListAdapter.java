@@ -7,27 +7,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collections;
-import java.util.List;
-
 import javax.inject.Inject;
 
 import ru.gulya.bookshelf.presentation.R;
 import ru.gulya.bookshelf.domain.models.Book;
+import ru.gulya.bookshelf.presentation.views.adapters.BaseListAdapter;
 
-public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookViewHolder> {
-
-    public interface OnBookClickListener {
-        void onBookClicked(Book book);
-    }
-
-    private OnBookClickListener mOnBookClickListener;
-
-    List<Book> mBookList;
+public class BookListAdapter extends BaseListAdapter<Book, BookListAdapter.BookViewHolder> {
 
     @Inject
     public BookListAdapter() {
-        mBookList = Collections.emptyList();
+        super();
     }
 
     @NonNull
@@ -39,21 +29,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        holder.bindData(mBookList.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return mBookList.size();
-    }
-
-    public void setBookList(List<Book> bookList) {
-        mBookList = bookList;
-        notifyDataSetChanged();
-    }
-
-    public void setOnBookClickListener(OnBookClickListener onBookClickListener) {
-        mOnBookClickListener = onBookClickListener;
+        holder.bindData(mItemsList.get(position));
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
@@ -71,9 +47,10 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.BookVi
 
         private void bindData(Book book) {
             mBookTitle.setText(book.getTitle());
+            mAuthorName.setText(book.getAuthor().toString());
             itemView.setOnClickListener(v -> {
-                if (mOnBookClickListener != null) {
-                    mOnBookClickListener.onBookClicked(book);
+                if (mOnItemClickListener != null) {
+                    mOnItemClickListener.onItemClicked(book);
                 }
             });
         }

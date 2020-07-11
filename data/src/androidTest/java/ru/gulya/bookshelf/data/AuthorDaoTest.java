@@ -13,7 +13,6 @@ import org.junit.runner.RunWith;
 
 import io.reactivex.disposables.Disposable;
 import ru.gulya.bookshelf.data.database.BookShelfDatabase;
-import ru.gulya.bookshelf.data.database.entity.AuthorEntity;
 import ru.gulya.bookshelf.data.repository.AuthorsRepository;
 import ru.gulya.bookshelf.domain.models.Author;
 
@@ -61,7 +60,7 @@ public class AuthorDaoTest {
     public void insertToRepo() {
         Long res = mAuthorsRepository.insert(AUTHOR).blockingGet();
 
-        Disposable d = mAuthorsRepository.getById(AUTHOR.getId())
+        Disposable d = mAuthorsRepository.getShortInfoById(AUTHOR.getId())
                 .test()
                 .assertValue(author -> author != null && (author.getId() == AUTHOR.getId()) &&
                         author.getFirstName().equals(AUTHOR.getFirstName()) &&

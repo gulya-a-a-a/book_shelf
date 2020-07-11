@@ -23,6 +23,8 @@ dependencies {
 
     implementation domainDependencies.dagger
 
+    implementation 'androidx.annotation:annotation:1.1.0'
+
     testImplementation testDependencies.junit
     testImplementation testDependencies.mockito
 }

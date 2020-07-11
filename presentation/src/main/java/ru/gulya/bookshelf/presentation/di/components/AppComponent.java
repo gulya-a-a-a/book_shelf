@@ -3,6 +3,7 @@ package ru.gulya.bookshelf.presentation.di.components;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import ru.gulya.bookshelf.domain.models.Author;
 import ru.gulya.bookshelf.presentation.di.modules.ApplicationModule;
 import ru.gulya.bookshelf.presentation.di.modules.ContextModule;
 import ru.gulya.bookshelf.presentation.di.modules.RoomModule;
@@ -21,4 +22,6 @@ public interface AppComponent {
     PostExecutionThread postExecutionThread();
 
     BookShelfRepository<Book> getBooksRepository();
+
+    BookShelfRepository<Author> getAuthorsRepository();
 }

@@ -10,23 +10,26 @@ import javax.inject.Inject;
 import io.reactivex.observers.DisposableObserver;
 import ru.gulya.bookshelf.domain.interactor.authors.GetAuthorsList;
 import ru.gulya.bookshelf.domain.models.Author;
+import ru.gulya.bookshelf.presentation.presenters.BaseListPresenter;
 
-public class AuthorListPresenter {
-
-    private GetAuthorsList mGetAuthorsList;
+public class AuthorListPresenter extends BaseListPresenter<Author> {
 
     @Inject
     public AuthorListPresenter(GetAuthorsList getAuthorsList) {
-        mGetAuthorsList = getAuthorsList;
+        super(getAuthorsList);
     }
 
-    public void getAuthors() {
-        mGetAuthorsList.execute(new AuthorsListObserver(), null);
+    @Override
+    public void getItemsList() {
+        mGetListUseCase.execute(new AuthorsListObserver(), null);
     }
 
     private final class AuthorsListObserver extends DisposableObserver<List<Author>> {
         @Override
         public void onNext(List<Author> authors) {
+            if (mView != null) {
+                mView.showItemList(authors);
+            }
             Log.d("TAG", authors.get(0).getFirstName());
         }
 

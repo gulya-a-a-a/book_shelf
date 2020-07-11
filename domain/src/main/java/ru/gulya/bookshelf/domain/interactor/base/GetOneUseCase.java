@@ -16,6 +16,6 @@ public abstract class GetOneUseCase<T> extends UseCaseObservable<T, Long> {
 
     @Override
     public Observable<T> buildUseCaseObservable(Long id) {
-        return mBookShelfRepository.getById(id);
+        return mBookShelfRepository.getDetailedInfoById(id);
     }
 }

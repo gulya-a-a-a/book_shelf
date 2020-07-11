@@ -10,8 +10,8 @@ import ru.gulya.bookshelf.domain.models.Book;
 public class UpdateBook extends UpdateUseCase<Book> {
 
     @Inject
-    public UpdateBook(BookShelfRepository<Book> bookBookShelfRepository,
-                      PostExecutionThread postExecutionThread) {
+    UpdateBook(BookShelfRepository<Book> bookBookShelfRepository,
+               PostExecutionThread postExecutionThread) {
         super(bookBookShelfRepository, postExecutionThread);
     }
 }

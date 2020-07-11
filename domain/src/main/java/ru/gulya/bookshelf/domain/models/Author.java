@@ -1,7 +1,12 @@
 package ru.gulya.bookshelf.domain.models;
 
-public class Author {
-    private final long id;
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Author implements Serializable {
+
+    private long id;
 
     private String firstName;
     private String surname;
@@ -11,9 +16,7 @@ public class Author {
     }
 
     public Author(String firstName, String surname) {
-        this.id = 0;
-        this.firstName = firstName;
-        this.surname = surname;
+        this(0, firstName, surname);
     }
 
     public Author(long id, String firstName, String surname) {
@@ -41,5 +44,23 @@ public class Author {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return firstName + " " + surname;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return id == author.id;
     }
 }

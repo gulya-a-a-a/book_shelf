@@ -9,17 +9,19 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "shelves",
-        foreignKeys = @ForeignKey(entity = BookcaseEntity.class, parentColumns = "id",
-                childColumns = "bookcase_id", onDelete = CASCADE),
-        indices = @Index("bookcase_id")
+        foreignKeys = @ForeignKey(entity = BookcaseEntity.class, parentColumns = "bookcase_id",
+                childColumns = "bookcaseId", onDelete = CASCADE),
+        indices = @Index("bookcaseId")
 )
 public class ShelfEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "shelf_id")
     private long id;
 
+    @ColumnInfo(name = "shelf_title")
     private String title;
 
-    @ColumnInfo(name = "bookcase_id")
+    @ColumnInfo(name = "bookcaseId")
     private long bookcaseId;
 
     public long getId() {
