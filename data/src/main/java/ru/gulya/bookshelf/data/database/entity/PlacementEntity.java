@@ -1,13 +1,16 @@
 package ru.gulya.bookshelf.data.database.entity;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "placement")
 public class PlacementEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "placement_id")
     private long id;
 
+    @ColumnInfo(name = "placement_title")
     private String title;
 
     public long getId() {

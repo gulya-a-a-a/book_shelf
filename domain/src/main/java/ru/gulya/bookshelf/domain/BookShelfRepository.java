@@ -15,7 +15,9 @@ public interface BookShelfRepository<T> {
 
     Observable<List<T>> getAll();
 
-    Observable<T> getById(long id);
+    Observable<T> getShortInfoById(long id);
+
+    Observable<T> getDetailedInfoById(long id);
 
     Single<Integer> deleteAll();
 }

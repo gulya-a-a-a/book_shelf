@@ -42,8 +42,13 @@ public class AuthorsRepository implements BookShelfRepository<Author> {
     }
 
     @Override
-    public Observable<Author> getById(long id) {
+    public Observable<Author> getShortInfoById(long id) {
         return mAuthorDao.getAuthorById(id).map(mAuthorEntityMapper::transform);
+    }
+
+    @Override
+    public Observable<Author> getDetailedInfoById(long id) {
+        return null;
     }
 
     @Override

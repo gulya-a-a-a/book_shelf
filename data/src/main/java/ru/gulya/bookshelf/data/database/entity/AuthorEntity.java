@@ -1,6 +1,7 @@
 package ru.gulya.bookshelf.data.database.entity;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -19,6 +20,7 @@ public class AuthorEntity {
     }
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "author_id")
     private long id;
 
     private String firstName;

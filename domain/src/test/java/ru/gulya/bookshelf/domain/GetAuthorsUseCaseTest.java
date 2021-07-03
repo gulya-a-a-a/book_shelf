@@ -11,7 +11,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 import ru.gulya.bookshelf.domain.executors.PostExecutionThread;
-import ru.gulya.bookshelf.domain.interactor.GetAuthorsList;
+import ru.gulya.bookshelf.domain.interactor.authors.GetAuthorsList;
 import ru.gulya.bookshelf.domain.models.Author;
 
 @RunWith(MockitoJUnitRunner.class)

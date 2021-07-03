@@ -27,6 +27,6 @@ public interface ShelvesDao {
     @Query("SELECT * FROM shelves")
     Flowable<List<ShelfEntity>> getAllShelves();
 
-    @Query("SELECT * FROM shelves WHERE id=:shelfId")
+    @Query("SELECT * FROM shelves WHERE shelf_id=:shelfId")
     Flowable<ShelfEntity> getShelfById(long shelfId);
 }

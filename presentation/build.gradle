@@ -39,6 +39,8 @@ dependencies {
 
     implementation presentationDependencies.appcompat
     implementation presentationDependencies.constraintlayout
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     implementation presentationDependencies.roomRuntime
     annotationProcessor presentationDependencies.roomCompiler

@@ -33,6 +33,6 @@ public interface AuthorDao {
     @Query("SELECT * FROM authors")
     Observable<List<AuthorEntity>> getAll();
 
-    @Query("SELECT * FROM authors WHERE id=:authorId")
+    @Query("SELECT * FROM authors WHERE author_id=:authorId")
     Observable<AuthorEntity> getAuthorById(long authorId);
 }

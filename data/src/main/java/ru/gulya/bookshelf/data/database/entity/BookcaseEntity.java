@@ -9,14 +9,16 @@ import androidx.room.PrimaryKey;
 import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "bookcases",
-        foreignKeys = @ForeignKey(entity = PlacementEntity.class, parentColumns = "id",
+        foreignKeys = @ForeignKey(entity = PlacementEntity.class, parentColumns = "placement_id",
                 childColumns = "room_id", onDelete = CASCADE),
         indices = @Index("room_id")
 )
 public class BookcaseEntity {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "bookcase_id")
     private long id;
 
+    @ColumnInfo(name = "bookcase_title")
     private String title;
 
     @ColumnInfo(name = "room_id")
